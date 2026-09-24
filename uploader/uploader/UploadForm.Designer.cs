@@ -1,4 +1,4 @@
-﻿namespace uploader
+namespace uploader
 {
     partial class UploadForm
     {
@@ -29,147 +29,198 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UploadForm));
-            this.settingsGroup = new DarkUI.Controls.DarkGroupBox();
-            this.uploadButton = new DarkUI.Controls.DarkButton();
-            this.statusLabel = new DarkUI.Controls.DarkLabel();
-            this.darkLabel1 = new DarkUI.Controls.DarkLabel();
-            this.mdTextbox = new DarkUI.Controls.DarkTextBox();
-            this.shaTextbox = new DarkUI.Controls.DarkTextBox();
-            this.darkLabel2 = new DarkUI.Controls.DarkLabel();
-            this.sha2Textbox = new DarkUI.Controls.DarkTextBox();
-            this.darkLabel3 = new DarkUI.Controls.DarkLabel();
-            this.settingsGroup.SuspendLayout();
+            this.infoCard = new uploader.ModernCard();
+            this.cardLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.infoLabel = new System.Windows.Forms.Label();
+            this.darkLabel1 = new System.Windows.Forms.Label();
+            this.mdTextbox = new uploader.ModernTextBox();
+            this.darkLabel2 = new System.Windows.Forms.Label();
+            this.shaTextbox = new uploader.ModernTextBox();
+            this.darkLabel3 = new System.Windows.Forms.Label();
+            this.sha2Textbox = new uploader.ModernTextBox();
+            this.buttonPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.uploadButton = new uploader.ModernButton();
+            this.statusLabel = new System.Windows.Forms.Label();
+            this.infoCard.SuspendLayout();
+            this.cardLayout.SuspendLayout();
+            this.buttonPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // settingsGroup
-            // 
-            this.settingsGroup.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.settingsGroup.Controls.Add(this.sha2Textbox);
-            this.settingsGroup.Controls.Add(this.darkLabel3);
-            this.settingsGroup.Controls.Add(this.shaTextbox);
-            this.settingsGroup.Controls.Add(this.darkLabel2);
-            this.settingsGroup.Controls.Add(this.mdTextbox);
-            this.settingsGroup.Controls.Add(this.darkLabel1);
-            this.settingsGroup.Location = new System.Drawing.Point(13, 13);
-            this.settingsGroup.Name = "settingsGroup";
-            this.settingsGroup.Size = new System.Drawing.Size(359, 110);
-            this.settingsGroup.TabIndex = 0;
-            this.settingsGroup.TabStop = false;
-            this.settingsGroup.Text = "File information";
-            // 
+            //
+            // infoCard
+            //
+            this.infoCard.Controls.Add(this.cardLayout);
+            this.infoCard.Location = new System.Drawing.Point(16, 16);
+            this.infoCard.Name = "infoCard";
+            this.infoCard.Padding = new System.Windows.Forms.Padding(16, 12, 16, 12);
+            this.infoCard.Size = new System.Drawing.Size(648, 192);
+            this.infoCard.TabIndex = 0;
+            //
+            // cardLayout
+            //
+            this.cardLayout.ColumnCount = 2;
+            this.cardLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.AutoSize));
+            this.cardLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.cardLayout.Controls.Add(this.infoLabel, 0, 0);
+            this.cardLayout.Controls.Add(this.darkLabel1, 0, 1);
+            this.cardLayout.Controls.Add(this.mdTextbox, 1, 1);
+            this.cardLayout.Controls.Add(this.darkLabel2, 0, 2);
+            this.cardLayout.Controls.Add(this.shaTextbox, 1, 2);
+            this.cardLayout.Controls.Add(this.darkLabel3, 0, 3);
+            this.cardLayout.Controls.Add(this.sha2Textbox, 1, 3);
+            this.cardLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cardLayout.Location = new System.Drawing.Point(16, 12);
+            this.cardLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.cardLayout.Name = "cardLayout";
+            this.cardLayout.RowCount = 4;
+            this.cardLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.cardLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.cardLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.cardLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.cardLayout.Size = new System.Drawing.Size(616, 168);
+            this.cardLayout.TabIndex = 0;
+            //
+            // infoLabel
+            //
+            this.infoLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.infoLabel.AutoSize = true;
+            this.cardLayout.SetColumnSpan(this.infoLabel, 2);
+            this.infoLabel.Font = uploader.Theme.Subtitle;
+            this.infoLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.infoLabel.Name = "infoLabel";
+            this.infoLabel.TabIndex = 0;
+            this.infoLabel.Text = "File information";
+            //
+            // darkLabel1
+            //
+            this.darkLabel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.darkLabel1.AutoSize = true;
+            this.darkLabel1.ForeColor = uploader.Theme.TextSecondary;
+            this.darkLabel1.Margin = new System.Windows.Forms.Padding(0, 0, 16, 0);
+            this.darkLabel1.Name = "darkLabel1";
+            this.darkLabel1.TabIndex = 1;
+            this.darkLabel1.Text = "MD5";
+            //
+            // mdTextbox
+            //
+            this.mdTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.mdTextbox.Font = uploader.Theme.Mono;
+            this.mdTextbox.Margin = new System.Windows.Forms.Padding(0);
+            this.mdTextbox.Name = "mdTextbox";
+            this.mdTextbox.ReadOnly = true;
+            this.mdTextbox.Size = new System.Drawing.Size(540, 32);
+            this.mdTextbox.TabIndex = 2;
+            //
+            // darkLabel2
+            //
+            this.darkLabel2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.darkLabel2.AutoSize = true;
+            this.darkLabel2.ForeColor = uploader.Theme.TextSecondary;
+            this.darkLabel2.Margin = new System.Windows.Forms.Padding(0, 0, 16, 0);
+            this.darkLabel2.Name = "darkLabel2";
+            this.darkLabel2.TabIndex = 3;
+            this.darkLabel2.Text = "SHA1";
+            //
+            // shaTextbox
+            //
+            this.shaTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.shaTextbox.Font = uploader.Theme.Mono;
+            this.shaTextbox.Margin = new System.Windows.Forms.Padding(0);
+            this.shaTextbox.Name = "shaTextbox";
+            this.shaTextbox.ReadOnly = true;
+            this.shaTextbox.Size = new System.Drawing.Size(540, 32);
+            this.shaTextbox.TabIndex = 4;
+            //
+            // darkLabel3
+            //
+            this.darkLabel3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.darkLabel3.AutoSize = true;
+            this.darkLabel3.ForeColor = uploader.Theme.TextSecondary;
+            this.darkLabel3.Margin = new System.Windows.Forms.Padding(0, 0, 16, 0);
+            this.darkLabel3.Name = "darkLabel3";
+            this.darkLabel3.TabIndex = 5;
+            this.darkLabel3.Text = "SHA256";
+            //
+            // sha2Textbox
+            //
+            this.sha2Textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.sha2Textbox.Font = uploader.Theme.Mono;
+            this.sha2Textbox.Margin = new System.Windows.Forms.Padding(0);
+            this.sha2Textbox.Name = "sha2Textbox";
+            this.sha2Textbox.ReadOnly = true;
+            this.sha2Textbox.Size = new System.Drawing.Size(540, 32);
+            this.sha2Textbox.TabIndex = 6;
+            //
+            // buttonPanel
+            //
+            this.buttonPanel.Controls.Add(this.uploadButton);
+            this.buttonPanel.Controls.Add(this.statusLabel);
+            this.buttonPanel.Location = new System.Drawing.Point(16, 224);
+            this.buttonPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonPanel.Name = "buttonPanel";
+            this.buttonPanel.Size = new System.Drawing.Size(648, 36);
+            this.buttonPanel.TabIndex = 1;
+            this.buttonPanel.WrapContents = false;
+            //
             // uploadButton
-            // 
-            this.uploadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uploadButton.Location = new System.Drawing.Point(13, 129);
+            //
+            this.uploadButton.Accent = true;
+            this.uploadButton.Margin = new System.Windows.Forms.Padding(0, 0, 16, 0);
             this.uploadButton.Name = "uploadButton";
-            this.uploadButton.Padding = new System.Windows.Forms.Padding(5);
-            this.uploadButton.Size = new System.Drawing.Size(75, 23);
-            this.uploadButton.TabIndex = 1;
+            this.uploadButton.Size = new System.Drawing.Size(140, 32);
+            this.uploadButton.TabIndex = 0;
             this.uploadButton.Text = "Upload";
             this.uploadButton.Click += new System.EventHandler(this.uploadButton_Click);
-            // 
+            //
             // statusLabel
-            // 
-            this.statusLabel.AutoSize = true;
-            this.statusLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.statusLabel.Location = new System.Drawing.Point(94, 134);
+            //
+            this.statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.statusLabel.AutoEllipsis = true;
+            this.statusLabel.ForeColor = uploader.Theme.TextSecondary;
+            this.statusLabel.Margin = new System.Windows.Forms.Padding(0);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(27, 13);
-            this.statusLabel.TabIndex = 2;
+            this.statusLabel.Size = new System.Drawing.Size(480, 32);
+            this.statusLabel.TabIndex = 1;
             this.statusLabel.Text = "Idle.";
-            // 
-            // darkLabel1
-            // 
-            this.darkLabel1.AutoSize = true;
-            this.darkLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel1.Location = new System.Drawing.Point(6, 22);
-            this.darkLabel1.Name = "darkLabel1";
-            this.darkLabel1.Size = new System.Drawing.Size(33, 13);
-            this.darkLabel1.TabIndex = 0;
-            this.darkLabel1.Text = "MD5:";
-            // 
-            // mdTextbox
-            // 
-            this.mdTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
-            this.mdTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mdTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.mdTextbox.Location = new System.Drawing.Point(73, 20);
-            this.mdTextbox.Name = "mdTextbox";
-            this.mdTextbox.Size = new System.Drawing.Size(280, 20);
-            this.mdTextbox.TabIndex = 1;
-            // 
-            // shaTextbox
-            // 
-            this.shaTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
-            this.shaTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.shaTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.shaTextbox.Location = new System.Drawing.Point(73, 46);
-            this.shaTextbox.Name = "shaTextbox";
-            this.shaTextbox.Size = new System.Drawing.Size(280, 20);
-            this.shaTextbox.TabIndex = 3;
-            // 
-            // darkLabel2
-            // 
-            this.darkLabel2.AutoSize = true;
-            this.darkLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel2.Location = new System.Drawing.Point(6, 48);
-            this.darkLabel2.Name = "darkLabel2";
-            this.darkLabel2.Size = new System.Drawing.Size(38, 13);
-            this.darkLabel2.TabIndex = 2;
-            this.darkLabel2.Text = "SHA1:";
-            // 
-            // sha2Textbox
-            // 
-            this.sha2Textbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
-            this.sha2Textbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.sha2Textbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.sha2Textbox.Location = new System.Drawing.Point(73, 72);
-            this.sha2Textbox.Name = "sha2Textbox";
-            this.sha2Textbox.Size = new System.Drawing.Size(280, 20);
-            this.sha2Textbox.TabIndex = 5;
-            // 
-            // darkLabel3
-            // 
-            this.darkLabel3.AutoSize = true;
-            this.darkLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel3.Location = new System.Drawing.Point(6, 74);
-            this.darkLabel3.Name = "darkLabel3";
-            this.darkLabel3.Size = new System.Drawing.Size(50, 13);
-            this.darkLabel3.TabIndex = 4;
-            this.darkLabel3.Text = "SHA256:";
-            // 
+            this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            //
             // UploadForm
-            // 
+            //
             this.AcceptButton = this.uploadButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 169);
-            this.Controls.Add(this.statusLabel);
-            this.Controls.Add(this.uploadButton);
-            this.Controls.Add(this.settingsGroup);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(680, 276);
+            this.Controls.Add(this.buttonPanel);
+            this.Controls.Add(this.infoCard);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "UploadForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VirusTotal Uploader";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UploadForm_FormClosing);
             this.Load += new System.EventHandler(this.UploadForm_Load);
-            this.settingsGroup.ResumeLayout(false);
-            this.settingsGroup.PerformLayout();
+            this.infoCard.ResumeLayout(false);
+            this.cardLayout.ResumeLayout(false);
+            this.cardLayout.PerformLayout();
+            this.buttonPanel.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private DarkUI.Controls.DarkGroupBox settingsGroup;
-        private DarkUI.Controls.DarkButton uploadButton;
-        private DarkUI.Controls.DarkLabel statusLabel;
-        private DarkUI.Controls.DarkLabel darkLabel1;
-        private DarkUI.Controls.DarkTextBox sha2Textbox;
-        private DarkUI.Controls.DarkLabel darkLabel3;
-        private DarkUI.Controls.DarkTextBox shaTextbox;
-        private DarkUI.Controls.DarkLabel darkLabel2;
-        private DarkUI.Controls.DarkTextBox mdTextbox;
+        private uploader.ModernCard infoCard;
+        private System.Windows.Forms.TableLayoutPanel cardLayout;
+        private System.Windows.Forms.Label infoLabel;
+        private uploader.ModernButton uploadButton;
+        private System.Windows.Forms.FlowLayoutPanel buttonPanel;
+        private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.Label darkLabel1;
+        private uploader.ModernTextBox sha2Textbox;
+        private System.Windows.Forms.Label darkLabel3;
+        private uploader.ModernTextBox shaTextbox;
+        private System.Windows.Forms.Label darkLabel2;
+        private uploader.ModernTextBox mdTextbox;
     }
 }

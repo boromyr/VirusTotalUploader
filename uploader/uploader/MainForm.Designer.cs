@@ -1,4 +1,4 @@
-﻿namespace uploader
+namespace uploader
 {
     partial class MainForm
     {
@@ -29,60 +29,78 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.dragLabel = new DarkUI.Controls.DarkLabel();
-            this.moreLabel = new DarkUI.Controls.DarkLabel();
+            this.rootLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.dropZone = new uploader.DropZone();
+            this.moreButton = new uploader.ModernButton();
+            this.rootLayout.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dragLabel
-            // 
-            this.dragLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dragLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dragLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.dragLabel.Location = new System.Drawing.Point(107, 142);
-            this.dragLabel.Name = "dragLabel";
-            this.dragLabel.Size = new System.Drawing.Size(166, 65);
-            this.dragLabel.TabIndex = 0;
-            this.dragLabel.Text = "Drag file here";
-            this.dragLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // moreLabel
-            // 
-            this.moreLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.moreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moreLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.moreLabel.Location = new System.Drawing.Point(140, 329);
-            this.moreLabel.Name = "moreLabel";
-            this.moreLabel.Size = new System.Drawing.Size(100, 23);
-            this.moreLabel.TabIndex = 1;
-            this.moreLabel.Text = "More";
-            this.moreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.moreLabel.Click += new System.EventHandler(this.moreLabel_Click);
-            // 
+            //
+            // rootLayout
+            //
+            this.rootLayout.ColumnCount = 1;
+            this.rootLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.rootLayout.Controls.Add(this.dropZone, 0, 0);
+            this.rootLayout.Controls.Add(this.moreButton, 0, 1);
+            this.rootLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rootLayout.Location = new System.Drawing.Point(16, 16);
+            this.rootLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.rootLayout.Name = "rootLayout";
+            this.rootLayout.RowCount = 2;
+            this.rootLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.rootLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.rootLayout.Size = new System.Drawing.Size(408, 388);
+            this.rootLayout.TabIndex = 0;
+            //
+            // dropZone
+            //
+            this.dropZone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dropZone.Font = uploader.Theme.BodyStrong;
+            this.dropZone.Margin = new System.Windows.Forms.Padding(0);
+            this.dropZone.Name = "dropZone";
+            this.dropZone.TabIndex = 0;
+            this.dropZone.Text = "Drag file here";
+            this.dropZone.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
+            this.dropZone.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
+            this.dropZone.DragLeave += new System.EventHandler(this.MainForm_DragLeave);
+            //
+            // moreButton
+            //
+            this.moreButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.moreButton.AutoSize = true;
+            this.moreButton.Margin = new System.Windows.Forms.Padding(0);
+            this.moreButton.Name = "moreButton";
+            this.moreButton.TabIndex = 1;
+            this.moreButton.Text = "More";
+            this.moreButton.Click += new System.EventHandler(this.moreLabel_Click);
+            //
             // MainForm
-            // 
+            //
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 361);
-            this.Controls.Add(this.moreLabel);
-            this.Controls.Add(this.dragLabel);
-            this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(440, 420);
+            this.Controls.Add(this.rootLayout);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(360, 340);
             this.Name = "MainForm";
+            this.Padding = new System.Windows.Forms.Padding(16);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VirusTotal Uploader";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
+            this.DragLeave += new System.EventHandler(this.MainForm_DragLeave);
+            this.rootLayout.ResumeLayout(false);
+            this.rootLayout.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DarkUI.Controls.DarkLabel dragLabel;
-        private DarkUI.Controls.DarkLabel moreLabel;
+        private System.Windows.Forms.TableLayoutPanel rootLayout;
+        private uploader.DropZone dropZone;
+        private uploader.ModernButton moreButton;
     }
 }
-

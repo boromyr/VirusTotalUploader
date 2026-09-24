@@ -8,11 +8,10 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DarkUI.Forms;
 
 namespace uploader
 {
-    public partial class MainForm : DarkForm
+    public partial class MainForm : ModernForm
     {
         private SettingsForm _settingsForm = new SettingsForm();
 
@@ -29,8 +28,8 @@ namespace uploader
             
             LocalizationHelper.Update();
 
-            dragLabel.Text = LocalizationHelper.Base.MainForm_DragFile;
-            moreLabel.Text = LocalizationHelper.Base.MainForm_More;
+            dropZone.Text = LocalizationHelper.Base.MainForm_DragFile;
+            moreButton.Text = LocalizationHelper.Base.MainForm_More;
         }
 
         private void moreLabel_Click(object sender, EventArgs e)
@@ -44,11 +43,20 @@ namespace uploader
 
         private void MainForm_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+            if (!e.Data.GetDataPresent(DataFormats.FileDrop)) return;
+
+            e.Effect = DragDropEffects.Copy;
+            dropZone.Highlight = true;
+        }
+
+        private void MainForm_DragLeave(object sender, EventArgs e)
+        {
+            dropZone.Highlight = false;
         }
 
         private void MainForm_DragDrop(object sender, DragEventArgs e)
         {
+            dropZone.Highlight = false;
             var settings = Settings.LoadSettings();
 
             var files = (string[])e.Data.GetData(DataFormats.FileDrop);

@@ -8,11 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DarkUI.Forms;
 
 namespace uploader
 {
-    public partial class SettingsForm : DarkForm
+    public partial class SettingsForm : ModernForm
     {
         public SettingsForm()
         {
@@ -44,7 +43,7 @@ namespace uploader
                 languageCombo.SelectedIndex = index;
             }
 
-            generalGroupBox.Text = LocalizationHelper.Base.SettingsForm_General;
+            generalLabel.Text = LocalizationHelper.Base.SettingsForm_General;
             apiLabel.Text = LocalizationHelper.Base.SettingsForm_Key;
             getApiButton.Text = LocalizationHelper.Base.SettingsForm_Get;
             languageLabel.Text = LocalizationHelper.Base.SettingsForm_Language;

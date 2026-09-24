@@ -1,4 +1,4 @@
-﻿namespace uploader
+namespace uploader
 {
     partial class SettingsForm
     {
@@ -29,155 +29,201 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
-            this.generalGroupBox = new DarkUI.Controls.DarkGroupBox();
-            this.languageCombo = new DarkUI.Controls.DarkComboBox();
-            this.languageLabel = new DarkUI.Controls.DarkLabel();
-            this.getApiButton = new DarkUI.Controls.DarkButton();
-            this.apiTextbox = new DarkUI.Controls.DarkTextBox();
-            this.apiLabel = new DarkUI.Controls.DarkLabel();
-            this.saveButton = new DarkUI.Controls.DarkButton();
-            this.openButton = new DarkUI.Controls.DarkButton();
-            this.statusLabel = new DarkUI.Controls.DarkLabel();
-            this.directCheckbox = new DarkUI.Controls.DarkCheckBox();
-            this.generalGroupBox.SuspendLayout();
+            this.generalCard = new uploader.ModernCard();
+            this.cardLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.generalLabel = new System.Windows.Forms.Label();
+            this.apiLabel = new System.Windows.Forms.Label();
+            this.apiTextbox = new uploader.ModernTextBox();
+            this.getApiButton = new uploader.ModernButton();
+            this.languageLabel = new System.Windows.Forms.Label();
+            this.languageCombo = new uploader.ModernComboBox();
+            this.directCheckbox = new uploader.ModernCheckBox();
+            this.buttonPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.saveButton = new uploader.ModernButton();
+            this.openButton = new uploader.ModernButton();
+            this.statusLabel = new System.Windows.Forms.Label();
+            this.generalCard.SuspendLayout();
+            this.cardLayout.SuspendLayout();
+            this.buttonPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // generalGroupBox
-            // 
-            this.generalGroupBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.generalGroupBox.Controls.Add(this.directCheckbox);
-            this.generalGroupBox.Controls.Add(this.languageCombo);
-            this.generalGroupBox.Controls.Add(this.languageLabel);
-            this.generalGroupBox.Controls.Add(this.getApiButton);
-            this.generalGroupBox.Controls.Add(this.apiTextbox);
-            this.generalGroupBox.Controls.Add(this.apiLabel);
-            this.generalGroupBox.Location = new System.Drawing.Point(13, 13);
-            this.generalGroupBox.Name = "generalGroupBox";
-            this.generalGroupBox.Size = new System.Drawing.Size(403, 154);
-            this.generalGroupBox.TabIndex = 0;
-            this.generalGroupBox.TabStop = false;
-            this.generalGroupBox.Text = "General settings";
-            // 
-            // languageCombo
-            // 
-            this.languageCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.languageCombo.FormattingEnabled = true;
-            this.languageCombo.Location = new System.Drawing.Point(74, 85);
-            this.languageCombo.Name = "languageCombo";
-            this.languageCombo.Size = new System.Drawing.Size(323, 21);
-            this.languageCombo.TabIndex = 4;
-            // 
-            // languageLabel
-            // 
-            this.languageLabel.AutoSize = true;
-            this.languageLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.languageLabel.Location = new System.Drawing.Point(10, 88);
-            this.languageLabel.Name = "languageLabel";
-            this.languageLabel.Size = new System.Drawing.Size(58, 13);
-            this.languageLabel.TabIndex = 3;
-            this.languageLabel.Text = "Language:";
-            // 
+            //
+            // generalCard
+            //
+            this.generalCard.Controls.Add(this.cardLayout);
+            this.generalCard.Location = new System.Drawing.Point(16, 16);
+            this.generalCard.Name = "generalCard";
+            this.generalCard.Padding = new System.Windows.Forms.Padding(16, 12, 16, 12);
+            this.generalCard.Size = new System.Drawing.Size(528, 232);
+            this.generalCard.TabIndex = 0;
+            //
+            // cardLayout
+            //
+            this.cardLayout.ColumnCount = 2;
+            this.cardLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.AutoSize));
+            this.cardLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.cardLayout.Controls.Add(this.generalLabel, 0, 0);
+            this.cardLayout.Controls.Add(this.apiLabel, 0, 1);
+            this.cardLayout.Controls.Add(this.apiTextbox, 1, 1);
+            this.cardLayout.Controls.Add(this.getApiButton, 1, 2);
+            this.cardLayout.Controls.Add(this.languageLabel, 0, 3);
+            this.cardLayout.Controls.Add(this.languageCombo, 1, 3);
+            this.cardLayout.Controls.Add(this.directCheckbox, 0, 4);
+            this.cardLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cardLayout.Location = new System.Drawing.Point(16, 12);
+            this.cardLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.cardLayout.Name = "cardLayout";
+            this.cardLayout.RowCount = 5;
+            this.cardLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.cardLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.cardLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.cardLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.cardLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.cardLayout.Size = new System.Drawing.Size(496, 208);
+            this.cardLayout.TabIndex = 0;
+            //
+            // generalLabel
+            //
+            this.generalLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.generalLabel.AutoSize = true;
+            this.cardLayout.SetColumnSpan(this.generalLabel, 2);
+            this.generalLabel.Font = uploader.Theme.Subtitle;
+            this.generalLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.generalLabel.Name = "generalLabel";
+            this.generalLabel.TabIndex = 0;
+            this.generalLabel.Text = "General settings";
+            //
+            // apiLabel
+            //
+            this.apiLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.apiLabel.AutoSize = true;
+            this.apiLabel.Margin = new System.Windows.Forms.Padding(0, 0, 16, 0);
+            this.apiLabel.Name = "apiLabel";
+            this.apiLabel.TabIndex = 1;
+            this.apiLabel.Text = "API key";
+            //
+            // apiTextbox
+            //
+            this.apiTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.apiTextbox.Margin = new System.Windows.Forms.Padding(0);
+            this.apiTextbox.Name = "apiTextbox";
+            this.apiTextbox.Size = new System.Drawing.Size(380, 32);
+            this.apiTextbox.TabIndex = 2;
+            //
             // getApiButton
-            // 
-            this.getApiButton.Location = new System.Drawing.Point(10, 45);
+            //
+            this.getApiButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.getApiButton.AutoSize = true;
+            this.getApiButton.Margin = new System.Windows.Forms.Padding(0);
             this.getApiButton.Name = "getApiButton";
-            this.getApiButton.Padding = new System.Windows.Forms.Padding(5);
-            this.getApiButton.Size = new System.Drawing.Size(161, 23);
-            this.getApiButton.TabIndex = 2;
+            this.getApiButton.TabIndex = 3;
             this.getApiButton.Text = "Get API key";
             this.getApiButton.Click += new System.EventHandler(this.getApiButton_Click);
-            // 
-            // apiTextbox
-            // 
-            this.apiTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
-            this.apiTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.apiTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.apiTextbox.Location = new System.Drawing.Point(60, 19);
-            this.apiTextbox.Name = "apiTextbox";
-            this.apiTextbox.Size = new System.Drawing.Size(337, 20);
-            this.apiTextbox.TabIndex = 1;
-            // 
-            // apiLabel
-            // 
-            this.apiLabel.AutoSize = true;
-            this.apiLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.apiLabel.Location = new System.Drawing.Point(7, 21);
-            this.apiLabel.Name = "apiLabel";
-            this.apiLabel.Size = new System.Drawing.Size(47, 13);
-            this.apiLabel.TabIndex = 0;
-            this.apiLabel.Text = "API key:";
-            // 
+            //
+            // languageLabel
+            //
+            this.languageLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.languageLabel.AutoSize = true;
+            this.languageLabel.Margin = new System.Windows.Forms.Padding(0, 0, 16, 0);
+            this.languageLabel.Name = "languageLabel";
+            this.languageLabel.TabIndex = 4;
+            this.languageLabel.Text = "Language";
+            //
+            // languageCombo
+            //
+            this.languageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.languageCombo.Margin = new System.Windows.Forms.Padding(0);
+            this.languageCombo.Name = "languageCombo";
+            this.languageCombo.Size = new System.Drawing.Size(380, 32);
+            this.languageCombo.TabIndex = 5;
+            //
+            // directCheckbox
+            //
+            this.directCheckbox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.directCheckbox.AutoSize = true;
+            this.cardLayout.SetColumnSpan(this.directCheckbox, 2);
+            this.directCheckbox.Margin = new System.Windows.Forms.Padding(0);
+            this.directCheckbox.Name = "directCheckbox";
+            this.directCheckbox.TabIndex = 6;
+            this.directCheckbox.Text = "Direct file upload";
+            //
+            // buttonPanel
+            //
+            this.buttonPanel.Controls.Add(this.saveButton);
+            this.buttonPanel.Controls.Add(this.openButton);
+            this.buttonPanel.Controls.Add(this.statusLabel);
+            this.buttonPanel.Location = new System.Drawing.Point(16, 264);
+            this.buttonPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonPanel.Name = "buttonPanel";
+            this.buttonPanel.Size = new System.Drawing.Size(528, 36);
+            this.buttonPanel.TabIndex = 1;
+            this.buttonPanel.WrapContents = false;
+            //
             // saveButton
-            // 
-            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(13, 173);
+            //
+            this.saveButton.Accent = true;
+            this.saveButton.AutoSize = true;
+            this.saveButton.Margin = new System.Windows.Forms.Padding(0, 0, 8, 0);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Padding = new System.Windows.Forms.Padding(5);
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 2;
+            this.saveButton.TabIndex = 0;
             this.saveButton.Text = "Save";
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-            // 
+            //
             // openButton
-            // 
-            this.openButton.Location = new System.Drawing.Point(94, 173);
+            //
+            this.openButton.AutoSize = true;
+            this.openButton.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
             this.openButton.Name = "openButton";
-            this.openButton.Padding = new System.Windows.Forms.Padding(5);
-            this.openButton.Size = new System.Drawing.Size(153, 23);
-            this.openButton.TabIndex = 3;
+            this.openButton.TabIndex = 1;
             this.openButton.Text = "Open settings file";
             this.openButton.Click += new System.EventHandler(this.darkButton1_Click);
-            // 
+            //
             // statusLabel
-            // 
-            this.statusLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.statusLabel.Location = new System.Drawing.Point(253, 145);
+            //
+            this.statusLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.ForeColor = uploader.Theme.TextSecondary;
+            this.statusLabel.Margin = new System.Windows.Forms.Padding(0);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(163, 23);
-            this.statusLabel.TabIndex = 4;
-            this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // directCheckbox
-            // 
-            this.directCheckbox.AutoSize = true;
-            this.directCheckbox.Location = new System.Drawing.Point(13, 122);
-            this.directCheckbox.Name = "directCheckbox";
-            this.directCheckbox.Size = new System.Drawing.Size(105, 17);
-            this.directCheckbox.TabIndex = 5;
-            this.directCheckbox.Text = "Direct file upload";
-            // 
+            this.statusLabel.TabIndex = 2;
+            //
             // SettingsForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(428, 208);
-            this.Controls.Add(this.statusLabel);
-            this.Controls.Add(this.openButton);
-            this.Controls.Add(this.saveButton);
-            this.Controls.Add(this.generalGroupBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            //
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(560, 316);
+            this.Controls.Add(this.buttonPanel);
+            this.Controls.Add(this.generalCard);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
-            this.generalGroupBox.ResumeLayout(false);
-            this.generalGroupBox.PerformLayout();
+            this.generalCard.ResumeLayout(false);
+            this.cardLayout.ResumeLayout(false);
+            this.cardLayout.PerformLayout();
+            this.buttonPanel.ResumeLayout(false);
+            this.buttonPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DarkUI.Controls.DarkGroupBox generalGroupBox;
-        private DarkUI.Controls.DarkTextBox apiTextbox;
-        private DarkUI.Controls.DarkLabel apiLabel;
-        private DarkUI.Controls.DarkButton getApiButton;
-        private DarkUI.Controls.DarkLabel languageLabel;
-        private DarkUI.Controls.DarkComboBox languageCombo;
-        private DarkUI.Controls.DarkButton saveButton;
-        private DarkUI.Controls.DarkButton openButton;
-        private DarkUI.Controls.DarkLabel statusLabel;
-        private DarkUI.Controls.DarkCheckBox directCheckbox;
+        private uploader.ModernCard generalCard;
+        private System.Windows.Forms.TableLayoutPanel cardLayout;
+        private System.Windows.Forms.Label generalLabel;
+        private uploader.ModernTextBox apiTextbox;
+        private System.Windows.Forms.Label apiLabel;
+        private uploader.ModernButton getApiButton;
+        private System.Windows.Forms.Label languageLabel;
+        private uploader.ModernComboBox languageCombo;
+        private System.Windows.Forms.FlowLayoutPanel buttonPanel;
+        private uploader.ModernButton saveButton;
+        private uploader.ModernButton openButton;
+        private System.Windows.Forms.Label statusLabel;
+        private uploader.ModernCheckBox directCheckbox;
     }
 }

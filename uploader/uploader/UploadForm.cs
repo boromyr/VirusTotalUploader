@@ -16,7 +16,7 @@ using RestSharp;
 
 namespace uploader
 {
-    public partial class UploadForm : DarkForm
+    public partial class UploadForm : ModernForm
     {
         private readonly bool _reopen;
         private readonly string _path;
@@ -27,21 +27,39 @@ namespace uploader
         private bool _isFolder;
         private List<string> _filesToUpload;
 
-        public UploadForm(MainForm mainForm, Settings settings, bool reopen, string path)
-        {
-            _path = path;
+        private bool _isMultipleFiles; // Nuovo campo
+
+        public UploadForm(MainForm mainForm, Settings settings, bool reopen, string path) {
             _mainForm = mainForm;
             _settings = settings;
-            _reopen = reopen;
-            _isFolder = Directory.Exists(_path);
+            _reopen   = reopen;
 
+            // Gestisci selezione multipla
+            if (path.Contains("|")) {
+                string[] files = path.Split('|').Select(p => p.Trim()).ToArray();
+
+                // Apri finestra per ogni file successivo
+                for (int i = 1; i < files.Length; i++) {
+                    var newForm = new UploadForm(mainForm, settings, false, files[i]);
+                    newForm._isMultipleFiles = true; // Marca come multiplo
+                    newForm.Show();
+                }
+
+                // Questa finestra gestisce il primo file
+                _path            = files[0];
+                _isMultipleFiles = files.Length > 1; // Marca se multipli
+            }
+            else {
+                _path            = path;
+                _isMultipleFiles = false;
+            }
+
+            _isFolder = Directory.Exists(_path);
             InitializeComponent();
         }
 
-        private void ChangeStatus(string text)
-        {
-            if (InvokeRequired)
-            {
+        private void ChangeStatus(string text) {
+            if (InvokeRequired) {
                 this.Invoke(new Action(() => ChangeStatus(text)));
                 return;
             }
@@ -49,26 +67,20 @@ namespace uploader
             statusLabel.Text = text;
         }
 
-        private void Finish(bool resetText)
-        {
-            if (InvokeRequired)
-            {
+        private void Finish(bool resetText) {
+            if (InvokeRequired) {
                 this.Invoke(new Action(() => Finish(resetText)));
                 return;
             }
 
             if (resetText)
-            {
                 ChangeStatus(LocalizationHelper.Base.Message_Idle);
-            }
 
             uploadButton.Text = LocalizationHelper.Base.UploadForm_Upload;
         }
 
-        private void CloseWindow()
-        {
-            if (InvokeRequired)
-            {
+        private void CloseWindow() {
+            if (InvokeRequired) {
                 this.Invoke(new Action(() => CloseWindow()));
                 return;
             }
@@ -76,22 +88,18 @@ namespace uploader
             this.Close();
         }
 
-        private void DisplayError(string error)
-        {
+        private void DisplayError(string error) {
             var messageBox = new DarkMessageBox(error, LocalizationHelper.Base.UploadForm_Error, DarkMessageBoxIcon.Error, DarkDialogButton.Ok);
             messageBox.ShowDialog();
         }
 
-        private void Upload()
-        {
-            if (string.IsNullOrEmpty(_settings.ApiKey))
-            {
+        private void Upload() {
+            if (string.IsNullOrEmpty(_settings.ApiKey)) {
                 MessageBox.Show(LocalizationHelper.Base.UploadForm_NoApiKey, LocalizationHelper.Base.UploadForm_InvalidKey, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (_settings.ApiKey.Length != 64)
-            {
+            if (_settings.ApiKey.Length != 64) {
                 MessageBox.Show(LocalizationHelper.Base.UploadForm_InvalidLength, LocalizationHelper.Base.UploadForm_InvalidKey, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -100,26 +108,21 @@ namespace uploader
             _client = new RestClient("https://www.virustotal.com");
 
             if (_isFolder)
-            {
                 _filesToUpload = Directory.GetFiles(_path, "*.*", SearchOption.AllDirectories).ToList();
-            }
             else
-            {
                 _filesToUpload = new List<string> { _path };
-            }
 
             foreach (var file in _filesToUpload)
-            {
                 UploadFile(file);
-            }
 
             Finish(true);
+            // Chiudi finestra dopo completamento upload
+            Thread.Sleep(500);
+            CloseWindow();
         }
 
-        private void UploadFile(string fullPath)
-        {
-            if (!File.Exists(fullPath))
-            {
+        private void UploadFile(string fullPath) {
+            if (!File.Exists(fullPath)) {
                 DisplayError($"File {fullPath} does not exist.");
                 return;
             }
@@ -131,7 +134,7 @@ namespace uploader
             reportRequest.AddParameter("resource", Utils.GetMD5(fullPath));
 
             var reportResponse = _client.Execute(reportRequest);
-            var reportContent = reportResponse.Content;
+            var reportContent  = reportResponse.Content;
             dynamic reportJson = JsonConvert.DeserializeObject(reportContent);
 
             try
@@ -148,7 +151,7 @@ namespace uploader
                 scanRequest.AddFile("file", fullPath);
 
                 var scanResponse = _client.Execute(scanRequest);
-                var scanContent = scanResponse.Content;
+                var scanContent  = scanResponse.Content;
                 dynamic scanJson = JsonConvert.DeserializeObject(scanContent);
 
                 try
@@ -167,10 +170,8 @@ namespace uploader
             }
         }
 
-        private void StartUploadThread()
-        {
-            if (_uploadThread != null && _uploadThread.IsAlive)
-            {
+        private void StartUploadThread() {
+            if (_uploadThread != null && _uploadThread.IsAlive) {
                 _uploadThread.Abort();
                 uploadButton.Text = LocalizationHelper.Base.UploadForm_Upload;
                 return;
@@ -181,46 +182,51 @@ namespace uploader
             _uploadThread.Start();
         }
 
-        private void UploadForm_Load(object sender, EventArgs e)
-        {
-            if (_isFolder)
-            {
-                mdTextbox.Text = "N/A (Folder)";
-                shaTextbox.Text = "N/A (Folder)";
+        private void UploadForm_Load(object sender, EventArgs e) {
+            if (_isFolder) {
+                mdTextbox.Text   = "N/A (Folder)";
+                shaTextbox.Text  = "N/A (Folder)";
                 sha2Textbox.Text = "N/A (Folder)";
             }
-            else
-            {
-                mdTextbox.Text = Utils.GetMD5(_path);
-                shaTextbox.Text = Utils.GetSHA1(_path);
-                sha2Textbox.Text = Utils.GetSHA256(_path);
+            else {
+                try
+                {
+                    mdTextbox.Text   = Utils.GetMD5(_path);
+                    shaTextbox.Text  = Utils.GetSHA1(_path);
+                    sha2Textbox.Text = Utils.GetSHA256(_path);
+                }
+                catch (Exception ex)
+                {
+                    DisplayError($"Errore calcolo hash: {ex.Message}");
+                    mdTextbox.Text   = "ERROR";
+                    shaTextbox.Text  = "ERROR";
+                    sha2Textbox.Text = "ERROR";
+                }
             }
 
-            settingsGroup.Text = LocalizationHelper.Base.UploadForm_Info;
-            uploadButton.Text = LocalizationHelper.Base.UploadForm_Upload;
-            statusLabel.Text = LocalizationHelper.Base.Message_Idle;
+            infoLabel.Text     = LocalizationHelper.Base.UploadForm_Info;
+            uploadButton.Text  = LocalizationHelper.Base.UploadForm_Upload;
+            statusLabel.Text   = LocalizationHelper.Base.Message_Idle;
+            ActiveControl      = uploadButton;
 
             if (_settings.DirectUpload)
-            {
                 StartUploadThread();
-            }
         }
 
-        private void uploadButton_Click(object sender, EventArgs e)
-        {
+        private void uploadButton_Click(object sender, EventArgs e) {
             StartUploadThread();
         }
 
-        private void UploadForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (_reopen)
-            {
+        private void UploadForm_FormClosing(object sender, FormClosingEventArgs e) {
+            // Non chiudere MainForm se selezione multipla
+            if (_reopen && !_isMultipleFiles)
                 _mainForm.Show();
+            else if (_reopen && _isMultipleFiles) {
+                // Non fare nulla, MainForm resta nascosto
             }
-            else
-            {
+            else if (!_isMultipleFiles)
                 _mainForm.Close();
-            }
         }
+
     }
 }
