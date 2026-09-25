@@ -25,6 +25,26 @@ namespace uploader
             base.OnHandleCreated(e);
             Theme.ApplyWindowChrome(this);
         }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            BringToForeground();
+        }
+
+        /// <summary>
+        /// Raises the window above the others and tries to give it focus. Windows may refuse the focus
+        /// (it then flashes the taskbar button), but toggling TopMost still puts the window on top.
+        /// </summary>
+        public void BringToForeground()
+        {
+            if (WindowState == FormWindowState.Minimized)
+                WindowState = FormWindowState.Normal;
+
+            TopMost = true;
+            TopMost = false;
+            Activate();
+        }
     }
 
     /// <summary>

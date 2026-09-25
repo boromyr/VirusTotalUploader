@@ -36,5 +36,22 @@ namespace uploader
         public string Message_NoLink = "No permalink found in response!";
         public string Message_NoSettings = "No settings file exists.";
         public string Message_Saved = "Settings saved.";
+
+        public string UploadForm_HashError = "Could not compute the file hashes: {0}";
+        public string UploadForm_OpenResults = "{0} files processed. Open all results in the browser?";
+        public string Message_CheckFile = "Checking {0}...";
+        public string Message_UploadFile = "Uploading {0}...";
+        public string Message_RateLimit = "API request limit reached, retrying in {0} s...";
+        public string Message_Cancelled = "Cancelled.";
+        public string Message_DoneWithErrors = "Completed with errors.";
+        public string Message_OpeningResults = "Done. Opening the results...";
+        public string Error_FileMissing = "File {0} does not exist.";
+        public string Error_FolderRead = "Could not read folder {0}: {1}";
+        public string Error_TooLarge = "The file is larger than 650 MB, the maximum VirusTotal accepts.";
+        public string Error_Network = "Network error: {0}";
+        public string Error_Http = "VirusTotal returned HTTP {0}.";
+        public string Error_InvalidResponse = "VirusTotal returned an invalid response.";
+        public string Error_RateLimit = "The API request limit is still exceeded after several attempts. Try again later.";
+        public string Error_Forbidden = "VirusTotal rejected the API key. Check it in the settings.";
     }
 }

@@ -199,6 +199,7 @@ namespace uploader
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VirusTotal Uploader";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UploadForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UploadForm_FormClosed);
             this.Load += new System.EventHandler(this.UploadForm_Load);
             this.infoCard.ResumeLayout(false);
             this.cardLayout.ResumeLayout(false);
